@@ -1,0 +1,11 @@
+module half_adder(input a,b, output S,Cout);
+  assign S=a^b;
+  assign Cout=a&b;
+endmodule
+
+module full_adder(input a,b,cin, output sum,c);
+  wire s,c0,c1;
+  half_adder ha(a,b,s,c0);
+  half_adder ha0(s,cin,sum,c1);
+  assign c=c0|c1;
+endmodule
