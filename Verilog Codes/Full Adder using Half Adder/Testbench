@@ -1,0 +1,16 @@
+module tb;
+  reg a,b,cin;
+  wire S,Cout;
+  full_adder fa(a,b,cin,S,Cout);
+  initial begin
+    $monitor("At time %0t: a=%b,b=%b,cin=%b,S=%b,Cout=%b",$time, a,b,cin,S,Cout);
+      a=0;b=0;cin=0;#1
+      a=0;b=0;cin=1;#1
+      a=0;b=1;cin=0;#1
+      a=0;b=1;cin=1;#1
+      a=1;b=0;cin=0;#1
+      a=1;b=0;cin=1;#1
+      a=1;b=1;cin=0;#1
+      a=1;b=1;cin=1;
+  end 
+endmodule
