@@ -1,0 +1,16 @@
+module tb;
+  reg a,b,bin;
+  wire D,Bout;
+  full_sub fs(a,b,bin,D,Bout);
+  initial begin
+    $monitor("At time %0t: a=%b,b=%b,bin=%b,Difference=%b,Borrow=%b",$time,a,b,bin,D,Bout);
+    a=0;b=0;bin=0;#1;
+    a=0;b=0;bin=1;#1;
+    a=0;b=1;bin=0;#1;
+    a=0;b=1;bin=1;#1;
+    a=1;b=0;bin=0;#1;
+    a=1;b=0;bin=1;#1;
+    a=1;b=1;bin=0;#1;
+    a=1;b=1;bin=1;
+  end
+endmodule
