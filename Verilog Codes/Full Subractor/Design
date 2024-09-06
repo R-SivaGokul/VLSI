@@ -1,0 +1,4 @@
+module full_sub(input a,b,bin, output D,Bout);
+  assign D=a^b^bin;
+  assign Bout=~a&b|(~(a^b)&bin);
+endmodule
