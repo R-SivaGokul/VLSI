@@ -1,0 +1,15 @@
+module Tb;
+  reg [3:0]A,B;
+  reg Cin;
+  wire [3:0]S;
+  wire Cout;
+  wire [4:0]add;
+  assign add={Cout,S};
+  carrylookaheadadder claa(A,B,Cin,S,Cout);
+  initial begin    $monitor("A=%b,B=%b,Cin=%b,S=%b,Cout=%b,Add=%d",A,B,Cin,S,Cout,add);
+    A=4;B=7;Cin=2;#3;
+    A=5;B=2;Cin=9;#3;
+    A=4'hb;B=4'h6;Cin=4'hd;#3;
+    A=4'ha;B=6;Cin=4'he;#3;
+  end
+endmodule
