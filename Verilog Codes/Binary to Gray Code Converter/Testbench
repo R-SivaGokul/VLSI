@@ -1,0 +1,18 @@
+module Tb;
+        reg [3:0]binary;
+        wire [3:0]gray;
+
+            btogconv btog(binary,gray);
+
+            initial begin
+                    $monitor("binary=%b,gray=%b",binary,gray);
+                        binary=1010;#3;
+                        binary=1100;#3;
+                        binary=1001;#3;
+                        binary=1000;#3;
+                end
+                initial begin
+                        $dumpfile("btogconv.vcd");
+                        $dumpvars;
+                end
+endmodule
