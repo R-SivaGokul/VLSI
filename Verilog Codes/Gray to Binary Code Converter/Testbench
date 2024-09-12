@@ -1,0 +1,22 @@
+module Tb;
+        reg [3:0]gray;
+        wire [3:0]binary;
+
+                gtob gtobconv(gray,binary);
+
+                initial begin
+                        $monitor("gray=%b,binary=%b",gray,binary);
+                                gray=1100;#3;
+                                gray=0110;#3;
+                                gray=0011;#3;
+                                gray=0001;#3;
+                                gray=0101;#3;
+                                gray=0111;#3;
+                        $finish;
+                end
+
+                initial begin
+                        $dumpfile("gtob.vcd");
+                        $dumpvars;
+                end
+endmodule
