@@ -1,0 +1,17 @@
+module gtob#(parameter SIZE=4)
+            (input [SIZE-1:0]gray,
+             output [SIZE-1:0]binary);
+
+        genvar i;
+         generate
+                 for(i=0;i<SIZE-1;i=i+1)
+
+                 begin
+                         assign binary[i]=binary[i+1]^gray[i];
+                 end
+
+         endgenerate
+
+         assign binary[SIZE-1]=gray[SIZE-1];
+
+endmodule
