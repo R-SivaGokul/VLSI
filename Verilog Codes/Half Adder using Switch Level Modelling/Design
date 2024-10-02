@@ -1,0 +1,29 @@
+module haswitch(
+        input A,B,
+        output S,C);
+
+        supply1 vdd;
+        supply0 gnd;
+
+        wire ab,ba,aa,bb,abb,bbb,x,y;
+
+        not(abb,A);
+        not(bbb,B);
+
+        pmos p1(ab,vdd,A);
+        pmos p2(ba,vdd,abb);
+        pmos p3(S,ab,bbb);
+        pmos p4(S,ba,B);
+        pmos p5(y,vdd,A);
+        pmos p6(y,vdd,B);
+        pmos p7(C,vdd,y);
+
+        nmos n1(S,aa,A);
+        nmos n2(S,bb,abb);
+        nmos n3(aa,gnd,B);
+        nmos n4(bb,gnd,bbb);
+        nmos n5(y,x,A);
+        nmos n6(x,gnd,B);
+        nmos n7(C,gnd,y);
+
+endmodule
