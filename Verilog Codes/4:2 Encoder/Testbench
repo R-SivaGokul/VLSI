@@ -1,0 +1,15 @@
+module Tb;
+        reg [3:0] d;
+        wire [1:0] y;
+        integer i;
+
+        encoder dec(d,y);
+
+        initial begin
+                d=4'b1;#3;
+                for(i=0; i<4; i++) begin
+                        $display("d=%h(in dec:%0d),y=%0h",d,i,y);
+                        d=d<<1;#3;
+                end
+        end
+endmodule
