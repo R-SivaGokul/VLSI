@@ -1,0 +1,10 @@
+module mux(
+        input sel0,sel1,
+        input i0,i1,i2,i3,
+        output y);
+
+  		
+  assign y=sel1?(sel0?i3:i1):(sel0?i2:i0);
+		
+  
+endmodule
