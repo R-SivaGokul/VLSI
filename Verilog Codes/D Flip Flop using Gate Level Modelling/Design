@@ -1,0 +1,13 @@
+module dff(
+        input D,En,
+        output Q,Qb);
+
+        wire R,Sb,Rb;
+
+        not(R,D);
+        nand nand1(Sb,En,D);
+        nand nand2(Rb,En,R);
+        nand nand3(Q,Sb,Qb);
+        nand nand4(Qb,Rb,Q);
+
+endmodule
