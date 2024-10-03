@@ -1,0 +1,22 @@
+`timescale 1ns / 1ps
+module arb_tb;
+  reg [4:0] req;
+  wire [4:0] grt;
+    arb uut (.req(req),.grt(grt));
+    initial begin
+        req = 5'b00000; 
+        #10 req = 5'b00001;
+        #10 req = 5'b00010;
+        #10 req = 5'b00100;
+        #10 req = 5'b01000;
+        #10 req = 5'b10000;
+        #10 req = 5'b11000;
+        #10 req = 5'b11111;
+        #10 req = 5'b10000; 
+        #20;
+        $finish;
+    end
+    initial begin
+      $monitor("Time: %0t | req: %b | grt: %b ", $time, req, grt);
+    end
+endmodule
