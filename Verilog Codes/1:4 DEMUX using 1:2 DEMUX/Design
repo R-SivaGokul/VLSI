@@ -1,0 +1,21 @@
+module dmux_2(
+        input sel,
+        input i,
+        output y0,y1);
+
+        assign {y0,y1}=sel?{1'b0,i}:{i,1'b0};
+
+endmodule
+
+module dmux(
+        input sel0,sel1,
+        input i,
+        output y0,y1,y2,y3);
+
+        wire z0,z1;
+
+        dmux_2 demux_1(sel0,i,z0,z1);
+        dmux_2 demux_2(sel1,z0,y0,y1);
+        dmux_2 demux_3(sel1,z1,y2,y3);
+
+endmodule
