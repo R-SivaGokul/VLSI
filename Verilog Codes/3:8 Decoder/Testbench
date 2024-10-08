@@ -1,0 +1,13 @@
+module Tb;
+        reg [2:0]d;
+        wire [7:0]y;
+
+        dcoder decoder(d,y);
+
+        initial begin
+                $monitor("d=%b,y=%b",d,y);
+                        repeat(8) begin
+                                d=$random;#3;
+                        end
+                end
+endmodule
