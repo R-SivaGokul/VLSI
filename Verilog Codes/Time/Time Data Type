@@ -1,0 +1,11 @@
+module timedt;
+  time a;
+  
+  initial begin
+    
+    #10;a=$time;
+    
+    $display("a=%0t",a);
+    
+  end
+endmodule
