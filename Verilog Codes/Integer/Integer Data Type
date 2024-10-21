@@ -1,0 +1,10 @@
+module integerdt;
+  integer a;
+  
+  initial begin
+    a=32'hcafe48d2;
+    
+    $display("a=1001x%h",a);
+    
+  end
+endmodule
