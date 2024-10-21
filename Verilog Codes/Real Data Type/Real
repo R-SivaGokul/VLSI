@@ -1,0 +1,10 @@
+module realdt;
+  real a;
+  
+  initial begin
+    a=0.112345678;
+    
+    $display("a=%0.6f",a);
+    
+  end
+endmodule
