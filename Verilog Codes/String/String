@@ -1,0 +1,20 @@
+module stringdt;
+  reg [8*11:1] a;
+  reg [8*25:1] b;
+  reg [8*6:1] c;
+  reg [8*2:1] d;
+  
+  initial begin
+    
+    a="I am Gokul";
+    b="I am Gokul";
+    c="I am Gokul";
+    d="I am Gokul";
+    
+    $display("a=%s",a);
+    $display("b=%s",b);
+    $display("c=%s",c);
+    $display("d=%s",d);
+    
+  end
+endmodule
