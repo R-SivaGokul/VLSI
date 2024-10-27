@@ -1,0 +1,64 @@
+module mealy_10111(
+	input x,clk,reset,
+	output z);
+
+	parameter A=5'h0;
+	parameter B=5'h1;
+	parameter C=5'h2;
+	parameter D=5'h3;
+	parameter E=5'h4;
+
+	bit [3:0] state,next_state;
+
+		always@(posedge clk or posedge reset) begin
+			if(reset)
+				state=A;
+			else
+				state=next_state;
+		end
+
+		always@(x or state) begin
+			case (state)
+				A:begin
+					if (x==0)
+						next_state=A;
+					else
+						next_state=B;
+				end
+
+				B:begin
+					if (x==0)
+						next_state=C;
+					else
+						next_state=B;
+				end
+
+				C:begin
+					if (x==0)
+						next_state=A;
+					else
+						next_state=D;
+				end
+
+				D:begin
+					if (x==0) 
+						next_state=C;
+					else
+						next_state=E;
+				end
+
+				E:begin
+					if (x==0)
+						next_state=C;
+					else
+						next_state=A;
+				end
+
+				default:next_state=A;
+
+			endcase
+		end
+
+		assign z=(E==0)&&(x==1)?1:0;
+
+endmodule
