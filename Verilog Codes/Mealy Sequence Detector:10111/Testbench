@@ -1,0 +1,28 @@
+module Tb;
+
+	reg x,clk,reset;
+	wire z;
+
+		always #2 clk=~clk;
+
+		initial begin
+			clk=1'b0;#2;
+			reset=1'b1;#2;
+			reset=1'b0;
+		end
+
+		initial begin
+			#5;x=0;#2;x=1;#2;x=1;#2;x=0;#2;
+			#5;x=1;#2;x=0;#2;x=1;#2;x=0;#2;
+			#5;x=0;#2;x=1;#2;x=1;#2;x=0;#2;
+			#5;x=1;#2;x=0;#2;x=1;#2;x=0;#2;
+			$finish;
+		end
+		
+		initial begin
+			$dumpfile("mealy_10111.vcd");
+			$dumpvars;
+		end
+
+endmodule
+
