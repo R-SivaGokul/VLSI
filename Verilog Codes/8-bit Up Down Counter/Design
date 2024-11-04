@@ -1,0 +1,12 @@
+module updowncounter(input reset,clk,updown, 
+                 output reg [8:0] count);
+  
+  always@(posedge clk) begin
+    if(reset)
+      count<=0;
+    else if(updown)
+        count<=count+1;
+    else
+      	count<=count-1;
+  end
+endmodule
