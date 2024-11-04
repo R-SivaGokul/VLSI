@@ -13,3 +13,32 @@ module Tb;
 			end
 		end
 endmodule
+
+/*OR
+
+module Tb;
+  reg reset,en,d;
+  wire z;
+  
+  dlatch dl(reset,en,d,z);
+  
+  	initial begin
+      $monitor("At time %0t:reset=%b,en=%b,d=%b,z=%b",$time,reset,en,d,z);
+   		reset=0;en=0;d=0;#1;
+   		reset=0;en=0;d=1;#1;
+   		reset=0;en=1;d=0;#1;
+   		reset=0;en=1;d=1;#1;
+   		reset=1;en=0;d=0;#1;
+   		reset=1;en=0;d=1;#1;
+   		reset=1;en=1;d=0;#1;
+   		reset=1;en=1;d=1;#1;
+   		reset=0;en=1;d=0;#1;
+   		reset=0;en=0;d=1;#1;
+   		reset=0;en=1;d=0;#1;
+   		reset=0;en=1;d=1;#1;
+      
+      $finish;
+   end
+endmodule
+
+*/
