@@ -1,0 +1,37 @@
+module posedgedetecct(
+  				input reset,clk,
+  				input level,
+  output reg tick);
+  
+  parameter zero=1'b0,
+  			one=1'b1;
+  
+  reg state,next_state;
+  
+  always@(posedge clk) begin
+    if(reset)
+      state<=zero;
+    else
+      state<=next_state;
+  end
+  
+  always@(*) begin
+    state=next_state;tick=0;
+    case(state)
+      zero:begin
+        if(level)
+          next_state=one;
+      	else
+          next_state=zero;
+      end
+      
+      one:begin
+        if(!level)
+          next_state=zero;
+        else
+          next_state=one;
+      end
+      default:next_state=zero;
+    endcase
+  end
+endmodule
