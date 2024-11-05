@@ -1,6 +1,6 @@
 module tb;
   reg reset,clk,en;
-  wire [8:0] count;
+  wire [7:0] count;
   
   upcounter counter(reset,clk,en,count);
   
