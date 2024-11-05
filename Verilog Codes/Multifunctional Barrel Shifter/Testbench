@@ -1,0 +1,33 @@
+module tb;
+  reg [7:0] a;
+  reg [2:0] con;
+  reg lr;
+  wire [7:0] out;
+  
+  top dut(a,con,lr,out);
+  
+  initial begin
+    a=8'b10010011;
+    lr=1'd0;
+    
+    con=3'd1;#10;
+    con=3'd4;#10;
+    con=3'd2;#10;
+    con=3'd6;#10;
+    
+    lr=1'd1;
+    
+    con=3'd0;#10;
+    con=3'd4;#10;
+    con=3'd3;#10;
+    con=3'd6;#10;
+    
+    $stop;
+    
+  end
+  
+  initial begin
+    $dumpfile("top.vcd");
+    $dumpvars;
+  end
+endmodule
