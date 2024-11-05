@@ -1,0 +1,19 @@
+module barrel(
+  input [7:0] a,
+  input [2:0] con,
+  output reg [7:0] out);
+  
+  always@(*) begin
+    case(con)
+      3'd0: out=a;
+      3'd1: out={a[0],a[7:1]};
+      3'd2: out={a[1:0],a[7:2]};
+      3'd3: out={a[2:0],a[7:3]};
+      3'd4: out={a[3:0],a[7:4]};
+      3'd5: out={a[4:0],a[7:5]};
+      3'd6: out={a[5:0],a[7:6]};
+      default:out={a[6:0],a[7]};
+    endcase
+  end
+endmodule
+      
