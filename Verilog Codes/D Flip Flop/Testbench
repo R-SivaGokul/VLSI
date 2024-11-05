@@ -1,0 +1,48 @@
+module tb;
+  reg clk,reset,d;
+  wire y;
+  
+  dff dflfl(clk,reset,d,y);
+  
+  initial begin
+    clk=0;
+    forever #5 clk=~clk;
+  end
+  
+  initial begin
+    d=0;
+    reset=1;
+    #10;
+    reset=0;
+    d=1;
+    #5;
+    d=0;
+    #5;
+     d=1;
+    #5;
+    d=1;
+    #5;
+     d=1;
+    #5;
+    d=0;
+    #5;
+     d=1;
+    #5;
+    d=1;
+    #5;
+     d=1;
+    #5;
+    d=1;
+    #5;
+    $finish;
+  end
+  
+  initial begin
+    $monitor("At time %0t:clk=%b,reset=%b,d=%b,y=%b",$time,clk,reset,d,y);
+  end
+  
+  initial begin
+    $dumpfile("dff.vcd");
+    $dumpvars;
+  end
+endmodule
