@@ -1,0 +1,46 @@
+module tb;
+  reg reset,clk;
+  wire [3:0] count;
+  
+  d_counter counter(reset,clk,count);
+  
+  initial begin
+    clk=0;
+    forever #5 clk=~clk;
+  end
+  
+  initial begin
+    reset=1;
+    #10;
+    reset=0;
+    #5;
+    reset=1;
+    #5;
+    reset=0;
+    #5;
+    reset=0;
+    #5;
+     reset=0;
+    #5;
+    reset=0;
+    #5;
+    reset=0;
+    #5;
+     reset=0;
+    #5;
+    reset=0;
+    #5;
+    reset=0;
+    #5;
+    $finish;
+  end
+  
+  initial begin
+    $monitor("At time %0t:reset=%b,clk=%b,count=%b",$time,reset,clk,count);
+  end
+  
+  initial begin
+    $dumpfile("d_counter.vcd");
+    $dumpvars;
+  end
+endmodule
