@@ -1,0 +1,25 @@
+module tb;
+  reg [7:0] a;
+  reg [2:0] con;
+  wire [7:0] out;
+  
+  barrel barl(a,con,out);
+  
+  initial begin
+    	a=8'hb4;
+    	#5;
+    	con=3'd0;#5;
+        con=3'd1;#5;
+        con=3'd2;#5;
+        con=3'd3;#5;
+        con=3'd4;#5;
+        con=3'd5;#5;
+        con=3'd6;#5;
+        con=3'd7;#5;
+    $finish;
+  end
+  
+  initial begin
+    $monitor("At time %0t:a=%b,con=%b,out=%b",$time,a,con,out);
+  end
+endmodule
