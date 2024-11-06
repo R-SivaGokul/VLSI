@@ -1,0 +1,70 @@
+module oscillate(input s,reset,clk,
+               output reg y);
+  
+  parameter A=4'h0,
+  			B=4'h1,
+  			C=4'h2,
+  			D=4'h3;
+  
+  reg [3:0] state,next_state;
+  
+  always@(posedge clk or posedge reset) begin
+    if(reset)
+      state<=A;
+    else
+      state<=next_state;
+  end
+  
+  always@(s or state) begin
+    case(state)
+      A:begin
+        if(s==0) begin
+          next_state=B;
+          y=1'b0;
+        end
+        else begin
+          next_state=C;
+          y=1'b1;
+        end
+      end
+      
+      B:begin
+        if(s==0) begin
+          next_state=A;
+          y=1'b0;
+        end
+        else begin
+          next_state=D;
+          y=1'b1;
+        end
+      end
+      
+      C:begin
+        if(s==0) begin
+          next_state=D;
+          y=1'b0;
+        end
+        else begin
+          next_state=A;
+          y=1'b1;
+        end
+      end
+  
+      D:begin
+        if(s==0) begin
+          next_state=C;
+          y=1'b0;
+        end
+        else begin
+          next_state=B;
+          y=1'b1;
+        end
+      end
+  
+      default:next_state=A;
+      
+    endcase
+  end
+  
+  
+endmodule
