@@ -1,0 +1,47 @@
+module threeone(input s,reset,clk,
+               output y);
+  
+  parameter A=3'h0,
+  			B=3'h1,
+  			C=3'h2;
+  
+  reg [2:0] state,next_state;
+  
+  always@(posedge clk or posedge reset) begin
+    if(reset)
+      state<=0;
+    else
+      state<=next_state;
+  end
+  
+  always@(s or state) begin
+    case(state)
+      A:begin
+        if(s==0)
+          next_state=A;
+        else
+          next_state=B;
+      end
+      
+      B:begin
+        if(s==0)
+          next_state=A;
+        else
+          next_state=C;
+      end
+      
+      C:begin
+        if(s==0)
+          next_state=A;
+        else
+          next_state=C;
+      end
+  
+      default:next_state=A;
+      
+    endcase
+  end
+  
+  assign y=((state==C)&&(s==1))?1:0;
+  
+endmodule
