@@ -1,32 +1,31 @@
-module tb;
-  reg clk,reset;
-  wire out;
-  
+module tb; 
+    reg clk,reset; 
+    wire out; 
+    integer clkcount; 
+   
   dutycycle dut(clk,reset,out);
   
-  initial begin
-    clk=0;
-    forever #5 clk=~clk;
-  end
-  
-  initial begin
-    reset=1;
-    #5;
-    reset=0;
-    #25;
-    reset=1;
-    #25;
-    reset=0;
-    #5;
-    $finish;
-  end
-  
-  initial begin
-    $monitor("At time %0t:clk=%b,reset=%b,out=%b",$time,clk,reset,out);
-  end
-  
-  initial begin
-    $dumpfile("dutycycle.vcd");
-    $dumpvars;
-  end
+    initial 
+    begin 
+        clkcount = 0; 
+        $timeformat(-9, 2, "ns", 16); 
+      $monitor("clk = %0b,reset=%0b,out=%0b,clkcount=%0d,time=%0t\n",clk,reset,out,clkcount, $realtime); 
+        #50; 
+        reset=0; 
+        #50; 
+        reset=1; 
+        #50; 
+        reset=0; 
+        #100; 
+        $finish; 
+    end 
+   
+    always begin 
+        clk=1; 
+        #2.5; 
+        clk=0; 
+        #2.5; 
+        clkcount=clkcount + 1; 
+    end 
+ 
 endmodule
