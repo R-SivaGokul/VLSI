@@ -26,23 +26,23 @@ module fourmul(input s,reset,clk,
       
       B:begin
         if(s==0)
-          next_state=B;
-        else
           next_state=C;
+        else
+          next_state=D;
       end
       
       C:begin
         if(s==0)
-          next_state=C;
+          next_state=A;
         else
-          next_state=D;
+          next_state=B;
       end
   
       D:begin
         if(s==0)
-          next_state=D;
+          next_state=C;
         else
-          next_state=A;
+          next_state=D;
       end
   
       default:next_state=A;
