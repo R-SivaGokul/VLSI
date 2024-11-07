@@ -26,6 +26,11 @@ module tb;
         clk=0; 
         #2.5; 
         clkcount=clkcount + 1; 
-    end 
+    end
+
+initial begin
+    $dumpfile("dutycycle.vcd");
+    $dumpvars;
+  end
  
 endmodule
