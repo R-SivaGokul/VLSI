@@ -1,0 +1,27 @@
+module dutycycle(input clk,reset,
+                 output reg out);
+  
+  reg [31:0] count;
+  
+  always@(posedge clk or posedge reset) begin
+    if(reset) begin
+      out<=0;
+      count<=0;
+    end
+    
+    else begin
+      if(count<6) begin
+        out=1;
+        count=count+1;
+      end
+      else if(count<10) begin
+        out<=0;
+        count=count+1;
+      end
+      else begin
+        out<=1;
+        count<=1;
+      end
+    end
+  end
+endmodule
