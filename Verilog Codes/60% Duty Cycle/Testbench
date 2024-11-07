@@ -1,0 +1,32 @@
+module tb;
+  reg clk,reset;
+  wire out;
+  
+  dutycycle dut(clk,reset,out);
+  
+  initial begin
+    clk=0;
+    forever #5 clk=~clk;
+  end
+  
+  initial begin
+    reset=1;
+    #5;
+    reset=0;
+    #25;
+    reset=1;
+    #25;
+    reset=0;
+    #5;
+    $finish;
+  end
+  
+  initial begin
+    $monitor("At time %0t:clk=%b,reset=%b,out=%b",$time,clk,reset,out);
+  end
+  
+  initial begin
+    $dumpfile("dutycycle.vcd");
+    $dumpvars;
+  end
+endmodule
