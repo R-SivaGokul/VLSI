@@ -1,0 +1,42 @@
+module tb;
+    reg A;
+    reg B;
+    reg clk;
+    reg rst;
+    wire Y;
+  
+  bin_bcd dut(A,B,clk,rst,Y );
+    
+  always #5 clk = ~clk; 
+    initial begin
+   
+        clk = 0;
+        rst = 1;
+        A = 0;
+        B = 0;
+        #10;
+        rst = 0;
+        #10;
+        A = 1; B = 0;
+        #10;  
+        #10;
+        A = 0; B = 0;
+        #10;  
+        #10;
+        A = 0; B = 1;
+        #10;  
+        #10;
+        A = 0; B = 0;
+        #10;
+      $stop;
+    end
+  initial begin
+    $monitor(
+    "At time %0t:A=%b,B=%b,clk=%b,rst=%b,Y=%b",$time,A,B,clk,rst,Y);
+  end
+  
+  initial begin
+    $dumpfile("bin_bcd.vcd");
+    $dumpvars;
+  end
+  endmodule
