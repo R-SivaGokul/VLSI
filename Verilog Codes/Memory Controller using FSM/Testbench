@@ -1,0 +1,46 @@
+module tb;
+    reg clk;
+    reg rst;
+    reg read;
+    reg write;
+    reg [7:0] address;
+    reg [31:0] data_in;
+    wire [31:0] data_out;
+    wire valid;
+    wire busy;
+
+    memory_controller dut(clk,rst,read,write,address,data_in,data_out,valid,busy);
+
+    always #5 clk = ~clk; 
+
+    initial begin
+        clk = 0;
+        rst = 1;
+        read = 0;
+        write = 0;
+        address = 0;
+        data_in = 0;
+        #10 rst = 0;
+        #10 write = 1;
+        address = 8'h10; 
+        data_in = 32'hDEADBEEF; 
+        #10 write = 0;
+        #10 read = 1;
+        address = 8'h10;
+        #10 read = 0;
+        #10 write = 1;
+        address = 8'h20;
+        data_in = 32'hCAFEBABE;
+        #10 write = 0;
+        #10 read = 1;
+        address = 8'h20;
+        #10 read = 0;
+        #50;
+        $finish;
+    end
+  
+  initial begin
+    $dumpfile("memory_controller.vcd");
+    $dumpvars;
+  end
+endmodule
