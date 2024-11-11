@@ -1,0 +1,54 @@
+module memory_controller(
+    input clk,             
+    input rst,             
+    input read,           
+    input write,           
+    input [7:0] address,   
+    input [31:0] data_in, 
+    output reg [31:0] data_out, 
+    output reg valid,           
+    output reg busy);
+
+    reg [31:0] memory [0:255];
+
+    parameter IDLE  = 2'b00,
+        	  READ  = 2'b01,
+        	  WRITE = 2'b10;
+
+    reg [1:0] state;  
+
+    always @(posedge clk or posedge rst) begin
+        if (rst) begin
+            state <= IDLE;
+            data_out <= 32'b0;
+            valid <= 0;
+            busy <= 0;
+        end
+        else begin
+            case (state)
+                IDLE: begin
+                    valid <= 0;
+                    if (read && !busy) begin
+                        state <= READ;
+                        busy <= 1;
+                    end
+                    else if (write && !busy) begin
+                        state <= WRITE;
+                        busy <= 1;
+                    end
+                end
+                READ: begin
+                    data_out <= memory[address];
+                    valid <= 1;
+                    busy <= 0;
+                    state <= IDLE;
+                end
+                WRITE: begin
+                    memory[address] <= data_in;
+                    busy <= 0;
+                    state <= IDLE;
+                end
+            endcase
+        end
+    end
+endmodule
