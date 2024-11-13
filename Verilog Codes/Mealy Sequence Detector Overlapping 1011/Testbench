@@ -1,0 +1,46 @@
+module tb;
+  reg reset,clk,i;
+  wire y;
+  
+  mealy_1011 over(reset,clk,i,y);
+  
+  initial begin
+    clk=0;
+    forever #5 clk=~clk;
+  end
+  
+  initial begin
+    reset=1;i=0;
+    #5;
+    reset=0;i=1;
+    #5;
+    i=0;
+    #5;
+    i=0;
+    #5;
+    i=0;
+    #5;
+    i=1;
+    #5;
+    i=0;
+    #5;
+    i=1;
+    #5;
+    i=1;
+    #5;
+    i=1;
+    #5;
+    $finish;
+  end
+  
+  initial begin 
+    $monitor("At time %0t:reset=%b,clk=%b,i=%b,y=%b",$time,reset,clk,i,y);
+  end
+  
+  initial begin
+    $dumpfile("mealy_1011.vcd");
+    $dumpvars;
+  end
+  
+endmodule
+    
