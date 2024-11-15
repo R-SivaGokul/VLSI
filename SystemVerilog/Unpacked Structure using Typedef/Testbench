@@ -1,0 +1,18 @@
+typedef struct {
+    string vegetable;
+    int count;
+    integer expiry;
+  }store;
+
+module tb;
+  
+  initial begin
+    store shop1='{"carrot",8,25};
+    store shop2='{"Tomato",5,31};
+    $display("shop1=%p  shop2=%p",shop1,shop2);
+    shop1.vegetable="Potato";
+    shop2.count=13;
+    $display("shop1=%p  shop2=%p",shop1,shop2);
+    
+  end
+endmodule
