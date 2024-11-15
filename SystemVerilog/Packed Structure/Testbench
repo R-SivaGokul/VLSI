@@ -1,0 +1,17 @@
+module tb;
+struct packed {
+  logic [7:0] vegetable;
+  bit [31:0] count;
+  logic [15:0] expiry;
+  }store;
+  
+  initial begin
+    store='{"carrot",8,25};
+    store='{"Tomato",5,31};
+    $display("store=%p",store);
+    store.vegetable="Potato";
+    store.count=13;
+    $display("store=%p",store);
+    
+  end
+endmodule
