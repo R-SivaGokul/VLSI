@@ -1,0 +1,18 @@
+module tb;
+  string data="Hi I am Learning SystemVerilog";
+  
+  initial begin
+        string str;
+    $display("Orginal string=%s",data);
+    foreach(data[i]) begin
+      $display("Orginal string=%s",data[i]);
+    end
+    $display("Orginal string=%0d",data.len);
+    str=data;
+    str.putc(4,"a");
+    $display("Modified string=%s",str);
+    $display("Modified string=%s",str.tolower());
+    $display("Modified string=%s",str.toupper());
+    $display("Modified string=%s",str.getc(3));
+  end
+endmodule
