@@ -1,0 +1,20 @@
+typedef struct packed {
+  reg [7:0] vegetable;
+  bit [31:0] count;
+  bit [15:0] expiry;
+  }store;
+
+module tb;
+  
+  initial begin
+    store shop1;
+    store shop2;
+    shop1='{"carrot",8,25};
+    shop2='{"Tomato",5,31};
+    $display("shop1=%p  shop2=%p",shop1,shop2);
+    shop1.vegetable="Potato";
+    shop2.count=13;
+    $display("shop1=%p  shop2=%p",shop1,shop2);
+    
+  end
+endmodule
