@@ -1,0 +1,16 @@
+module tb;
+  struct {
+    string vegetable;
+    int count;
+    integer expiry;
+  }store;
+  
+  initial begin
+    store='{"carrot",8,25};
+    $display("store=%p",store);
+    
+    store.vegetable="Potato";
+    $display("store=%p",store);
+    
+  end
+endmodule
