@@ -1,0 +1,15 @@
+module tb;
+ typedef enum {RED,YELLOW,GREEN} light;
+  
+  initial begin
+    light color;
+    color=GREEN;
+    $display("orginal value:%p",color);
+    $display("orginal value:%p",color.first());
+    $display("orginal value:%p",color.prev());
+    $display("orginal value:%p",color.next());
+    $display("orginal value:%p",color.name());
+    $display("orginal value:%p",color.num());
+    
+  end
+endmodule
