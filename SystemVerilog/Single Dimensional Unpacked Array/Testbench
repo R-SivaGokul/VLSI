@@ -1,0 +1,11 @@
+module tb;
+  byte data[0:7];
+  
+  initial begin
+    data='{1,2,3,4,5,6,7,8};
+    foreach(data[i]) begin
+      $display("index:%0d",i,data[i]);
+    end
+    $display("data:%p",data);
+  end
+endmodule
