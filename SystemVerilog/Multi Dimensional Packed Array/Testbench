@@ -1,0 +1,16 @@
+module tb;
+  bit [3:0][7:0] data;
+  int i,j;
+  
+  initial begin
+    data=32'hfacecafe;
+    foreach(data[i][j]) begin
+      data[i][j]=(i*8)+j;
+    end
+    for(i=0;i<4;i++) begin
+      for(j=0;j<8;j++) begin
+      $display("data[%0d][%0d]:%0d",i,j,data[i][j]);
+      end
+    end
+  end
+endmodule
