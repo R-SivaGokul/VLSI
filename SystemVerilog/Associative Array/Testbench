@@ -1,0 +1,14 @@
+module tb;
+  int a[string];
+  bit b[int];
+  string c[string];
+  
+  initial begin
+    a='{"Cherry":1,"Lemon":2,"Blueberry":3};
+    b='{0:1,1:2,2:3};
+    c='{"Cherry":"Apple","Mango":"Orange","Gauva":"Raspberry"};
+    $display("a=%p",a);
+    $display("a=%p",b);
+    $display("a=%p",c);    
+  end
+endmodule
