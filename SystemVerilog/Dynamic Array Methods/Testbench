@@ -1,0 +1,23 @@
+module tb;
+  string fruit[];
+  
+  initial begin
+    fruit=new[3];
+    fruit='{"Grape","Lemon","Cherry"};
+    foreach(fruit[i]) begin
+      $display("fruit[%0d]=%0s",i,fruit[i]);
+    end
+    $display("fruit size=%0d",fruit.size());
+    fruit.delete();
+    $display("fruit delete=%0d",fruit.size());
+    
+  end
+endmodule
+
+/*
+fruit[0]=Grape
+fruit[1]=Lemon
+fruit[2]=Cherry
+fruit size=3
+fruit delete=0
+*/
