@@ -1,0 +1,8 @@
+interface inter;
+  logic rst;
+  logic clk;
+  logic wr,rd;
+  logic [7:0] din;
+  logic [7:0] dout;
+  logic full,empty;
+endinterface
