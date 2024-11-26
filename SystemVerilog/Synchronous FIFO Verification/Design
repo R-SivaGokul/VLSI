@@ -1,4 +1,4 @@
-module fifo #(parameter DWIDTH=8,DEPTH=8)(
+module fifo #(parameter DWIDTH=8,DEPTH=16)(
   input clk,rst,
   input wr,rd,
   input [DWIDTH-1:0] din,
