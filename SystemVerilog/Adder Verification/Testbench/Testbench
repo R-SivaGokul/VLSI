@@ -1,0 +1,27 @@
+`include "interface.sv" 
+`include "test.sv" 
+module Add_tb; 
+  ADDtest test;
+  mailbox mail;
+  operation intf();
+  add dut(.a(intf.a),.b(intf.b),.y(intf.y));
+  
+  initial begin 
+    mail = new(); 
+    test = new(intf, mail); 
+    fork 
+      test.memory; 
+      test.run; 
+    join 
+  end 
+   
+  initial begin
+    $monitor("At time %0t testbench:a=%0d,b=%0d,y=%0d",$time,intf.a,intf.b,intf.y);
+  end
+  
+  initial begin
+    $dumpfile("add.vcd");
+    $dumpvars;
+  end
+  
+endmodule
