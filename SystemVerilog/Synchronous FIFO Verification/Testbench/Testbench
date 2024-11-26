@@ -21,7 +21,7 @@ module tb;
   initial begin 
   $monitor("clk=%0d rst=%0d dout---%d", intf.clk, intf.rst, intf.dout);
     $dumpfile("fifo.vcd"); 
-    $dumpvars(1); 
+    $dumpvars; 
     #1000; 
     $finish; 
   end 
