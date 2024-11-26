@@ -1,0 +1,4 @@
+interface operation; 
+  logic [5:0]a,b;  
+  logic [6:0]y; 
+endinterface
