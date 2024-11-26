@@ -1,4 +1,4 @@
-module synfifo #(parameter DWIDTH=8,DEPTH=8)(
+module synfifo #(parameter DWIDTH=8,DEPTH=16)(
   input clk,reset,
   input w_en,r_en,
   input [DWIDTH-1:0] data_in,
