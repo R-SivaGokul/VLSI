@@ -1,0 +1,20 @@
+class ABC;
+  rand bit [4:0]a;
+  rand bit [4:0]b;
+  
+  constraint val1{a dist{6:=5,[0:4]:=5};}
+  constraint val2{b dist{7:/5,[0:4]:/5};}
+  
+endclass
+
+module tb;
+  ABC abc;
+  
+  initial begin
+    abc=new();
+    repeat(15) begin
+      abc.randomize();
+      $display("a=%0d,b=%0d",abc.a,abc.b);
+    end
+  end
+endmodule
