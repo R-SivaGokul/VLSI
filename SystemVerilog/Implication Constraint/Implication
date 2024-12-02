@@ -1,0 +1,19 @@
+class abc;
+  rand bit [7:0]a;
+  rand enum {LOW,HIGH}b;
+  
+  constraint abcd{(b==LOW) -> a<100;}
+                  
+endclass
+
+module tb;
+  abc cba;
+  
+  initial begin
+    cba=new();
+    repeat(5) begin
+      cba.randomize();
+      $display("b=%s,a=%0d",cba.b.name(),cba.a);
+    end
+  end
+endmodule
