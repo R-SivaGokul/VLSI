@@ -1,0 +1,16 @@
+class ABC;
+  rand bit [4:0]a[5];
+  
+  constraint arr{foreach (a[i]){a[i]==i;}}
+  
+endclass
+
+module tb;
+  ABC abc;
+  
+  initial begin
+    abc=new();
+      abc.randomize();
+    $display("a=%0p",abc.a);
+  end
+endmodule
