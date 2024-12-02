@@ -1,0 +1,37 @@
+`define START 500
+`define STOP 1000
+
+class constrain;
+  randc bit [5:0]a;
+  rand bit [7:0]b;
+  rand bit [10:0]c;
+  rand bit [8:0]d;
+  rand bit [8:0]e;
+  rand bit [8:0]f;
+  rand bit [7:0]g;
+  
+  parameter x=100,y=250;
+  
+  constraint abc{a inside{10,20,30,40,50};}
+  constraint bac{b inside{[0:10],4,[10:20]};}
+  constraint cab{c inside{[`START:`STOP]};}
+  constraint casb{d inside{[0:4]};}
+  constraint cabc{e inside{[a:b]};}
+  constraint cabt{f inside{[x:y]};}
+  constraint cabe{!(g inside{[0:250]});}
+                           
+endclass
+                         
+module tb;
+  constrain cons;
+  
+  initial begin
+    cons=new();
+    
+    repeat(10) begin
+      cons.randomize();
+      $display("a=%0d,b=%0d,c=%0d,d=%0d,e=%0d,f=%0d,g=%0d",cons.a,cons.b,cons.c,cons.d,cons.e,cons.f,cons.g);
+    end
+  end
+endmodule
+                             
