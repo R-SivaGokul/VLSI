@@ -1,0 +1,23 @@
+module fibo(input clk,rst, 
+            output [7:0]out);
+  
+  reg [7:0]next,curr,sync;
+  
+  always@(posedge clk) begin
+    if(rst) begin
+      next<=8'h1;
+      curr<=8'h0;
+      sync<=8'h0;
+    end
+    
+    else begin
+      next<=curr[7]?8'h1:next+curr;
+      curr<=curr[7]?8'h0:next;
+      sync<=curr;
+    end
+  end
+  
+  assign out=curr;
+  
+endmodule
+    
