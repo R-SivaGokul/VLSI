@@ -1,0 +1,26 @@
+module tb;
+  reg clk,rst;
+  wire [7:0]out;
+  
+  fibo fibonacci(clk,rst,out);
+  
+  initial begin
+    clk=0;
+    forever #1clk=~clk;
+  end
+  
+  initial begin
+    $monitor("At time %0t : out=%0t",$time,out);
+    rst=1;
+    #10;
+    rst=0;
+    #100;
+    $finish;
+  end
+  
+  initial begin
+    $dumpfile("fibo.vcd");
+    $dumpvars;
+  end
+  
+endmodule
