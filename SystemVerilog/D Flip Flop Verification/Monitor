@@ -1,0 +1,21 @@
+class monitor;
+  virtual inter vintf;
+  transaction t;
+  mailbox mail;
+  
+  function new(virtual inter vintf, mailbox mail);
+    this.mail=mail;
+    this.vintf=vintf;
+  endfunction
+  
+  task moni;
+    repeat(5) begin
+      t=new();
+      mail.put(t);
+      t.d=vintf.d;
+      t.clk=vintf.clk;
+      t.rst=vintf.rst;
+      #20 vintf.q=t.q;
+    end
+  endtask
+endclass
