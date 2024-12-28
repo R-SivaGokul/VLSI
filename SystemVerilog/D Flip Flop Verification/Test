@@ -1,0 +1,25 @@
+`include "environment.sv"
+
+class test;
+  environment env;
+  mailbox mail;
+  virtual inter intf;
+  
+  function new(virtual inter intf, mailbox mail);
+    this.mail=mail;
+    this.intf=intf;
+  endfunction
+  
+  task memory;
+    mail=new();
+    env=new(intf,mail);
+  endtask
+  
+  task run;
+    fork
+      env.memory;
+      env.run;
+    join
+  endtask
+  
+endclass
