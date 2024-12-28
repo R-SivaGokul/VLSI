@@ -1,0 +1,21 @@
+class driver;
+  virtual inter intf;
+  transaction pkt;
+  mailbox mail;
+  
+  function new(virtual inter intf, mailbox mail);
+    this.mail=mail;
+    this.intf=intf;
+  endfunction
+  
+  task driver;
+    repeat(5) begin
+      pkt=new();
+      mail.get(pkt);
+      intf.d=pkt.d;
+      intf.clk=pkt.clk;
+      intf.rst=pkt.rst;
+      #15 pkt.q=intf.q;
+    end
+  endtask
+endclass
