@@ -1,0 +1,39 @@
+`include "interface.sv"
+`include "test.sv"
+
+module tb;
+  inter intf();
+  mailbox mail;
+  test tst;
+  
+    dff dflipflop(.d(intf.d),.clk(intf.clk),.rst(intf.rst),.q(intf.q));
+
+  initial begin
+    mail=new();
+    tst=new(intf,mail);
+    fork
+      tst.memory;
+      tst.run;
+    join
+  end
+      
+  initial begin
+    intf.clk=0;
+    forever #1 intf.clk=~intf.clk;
+  end
+  
+  initial begin
+    $monitor("At time %0t : rst=%0d,clk=%0d,d=%0d,q=%0d",$time,intf.rst,intf.clk,intf.d,intf.q);
+    intf.rst=1;
+    #10;
+    intf.rst=0;
+    #150;
+    $finish;
+  end
+  
+  initial begin
+    $dumpfile("dff.vcd");
+    $dumpvars;
+  end
+  
+endmodule
