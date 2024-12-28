@@ -1,0 +1,6 @@
+class transaction;
+  rand bit d;
+  bit clk,rst;
+  bit q;
+  constraint oper{d dist{1:/60,0:/40};}
+endclass
