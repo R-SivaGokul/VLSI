@@ -1,0 +1,16 @@
+module vow(input string alp, output reg out);
+ 
+  
+  always@(*) begin
+    case(alp)
+      "a":out=1;
+      "e":out=1;
+      "i":out=1;
+      "o":out=1;
+      "u":out=1;
+      default : out = 0;
+    endcase
+  end
+  
+endmodule
+   
