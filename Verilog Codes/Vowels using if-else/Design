@@ -1,0 +1,12 @@
+module vow(input string alp, output reg out);
+ 
+  
+  always@(*) begin
+    if(alp == "a" || alp == "e" || alp == "i" || alp == "o" || alp == "u")
+      out=1;
+    else
+      out=0;
+  end
+  
+endmodule
+   
