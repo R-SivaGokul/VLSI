@@ -1,0 +1,41 @@
+module tb;
+  string alp;
+  wire out;
+  
+  vow con(alp,out);
+  
+  initial begin
+    alp="a";#3;
+    alp="b";#3;
+        alp="c";#3;
+        alp="d";#3;
+        alp="e";#3;
+        alp="f";#3;
+        alp="g";#3;
+        alp="h";#3;
+        alp="i";#3;
+        alp="j";#3;
+        alp="k";#3;
+        alp="l";#3;
+        alp="m";#3;
+        alp="n";#3;
+        alp="o";#3;
+        alp="p";#3;
+        alp="q";#3;
+        alp="r";#3;
+        alp="s";#3;
+        alp="t";#3;
+        alp="u";#3;
+        alp="v";#3;    
+        alp="w";#3;
+        alp="x";#3;
+        alp="y";#3;
+        alp="z";#3;
+
+  end
+  
+  initial begin
+    $monitor("At time %0t : alp=%s, out=%d",$time,alp,out);
+  end
+  
+endmodule
