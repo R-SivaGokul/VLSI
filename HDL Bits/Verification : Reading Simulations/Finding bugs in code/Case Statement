@@ -6,7 +6,6 @@ module top_module (
     always @(*) begin
         out=0;
         valid=1; 
-        //o//ut=0;
         case(code)
             8'h45: out = 0;
             8'h16: out = 1;
