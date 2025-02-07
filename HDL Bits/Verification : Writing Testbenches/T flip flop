@@ -1,0 +1,28 @@
+module top_module ();
+    reg clk,reset;
+    reg t;
+    wire q;
+    
+    tff flop(clk,reset,t,q);
+    
+    initial begin
+        clk=0;
+        forever #5 clk=~clk;
+    end
+    
+    always@(posedge clk) begin
+        if(reset)
+            t<=0;
+        else
+            t<=1;
+    end
+    
+    initial begin
+        reset=0;
+        #10;
+        reset=1;
+        #10;
+        reset=0;
+    end
+
+endmodule
