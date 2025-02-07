@@ -1,0 +1,35 @@
+module top_module (
+    input clk,
+    input reset,      // Synchronous reset
+    output shift_ena);
+    
+     parameter [2:0] A=0,B=1,C=2,D=3,E=4;
+    reg [2:0] state,next_state;
+    
+    always@(posedge clk) begin
+        state<=next_state;
+    end
+    
+    always@(*) begin
+        case(state)
+            A:begin
+                if(reset==0)
+                    next_state<=A;
+                else
+                    next_state<=B;
+            end
+            
+            B:next_state<=C;
+                        
+            C:next_state<=D;
+                
+            D:next_state<=E;
+            
+            E:next_state<=A;
+            default:next_state<=A;
+        endcase
+    end
+    
+    assign shift_ena=(state==B | state==C | state==D | state==E);
+
+endmodule
